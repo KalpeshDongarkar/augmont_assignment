@@ -1,0 +1,63 @@
+<div class="table-responsive">
+  <table class="table table-hover table-bordered mb-4">
+    <thead>
+      <tr>
+        <th style="width: 5rem;">Sr No</th>
+        @for (header of headerKeys; track header) {
+        <ng-container>
+          @if(header.hdrName != this.uniqIdKey && showColFn(header.hdrName)){
+          <th>
+            <div class="d-flex justify-content-between">
+              <strong>{{header.hdrName}}</strong>
+              @if (sortArr.includes(header.hdrName)) {
+              <div class="d-flex ustify-content-center align-items-center text-center">
+                <span (click)="header.srtBy = header.srtBy != 'asc' ? 'asc' : ''; sortData(header)"><i
+                    class="icon-btn fa fa-sort-asc" [ngClass]="header.srtBy == 'asc' ? 'icon-active' : ''"></i></span>
+                <span (click)="header.srtBy =  header.srtBy != 'desc' ? 'desc' : '' ; sortData(header)"><i
+                    class="icon-btn fa fa-sort-desc" [ngClass]="header.srtBy == 'desc' ? 'icon-active' : ''"></i></span>
+              </div>
+              }
+            </div>
+            @if (searchArr.includes(header.hdrName)) {
+            <div class="input-group mb-3" style="margin-top: 2px;margin-bottom: 2px !important">
+              <input type="text" class="form-control search-input" (input)="searchDataTerm(header, $event)">
+            </div>
+            }
+          </th>
+          }
+        </ng-container>
+        }
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (mtd of mainTblData; track $index) {
+      <tr>
+        <td>{{((currentPage-1)*pageSize)+$index+1}}</td>
+        @for (hdr of headerKeys; track hdr.hdrName) {
+        <ng-container>
+          @if(hdr != this.uniqIdKey && showColFn(hdr.hdrName)){
+          <td>{{mtd[hdr.hdrName]}}</td>
+          }
+        </ng-container>
+        }
+        <td class="w-25 p-0">
+          @if(smlVal(mtd)){
+          <div class="d-flex justify-content-center">
+            @for (btn of btnArr; track btn) {
+            <button type="button" class="btn" (click)="configFn(btn,mtd)"><span
+                class="{{btn.btnIconClass}}"></span></button>
+            }
+          </div>
+          }
+        </td>
+      </tr>
+      }
+      @if (mainTblData.length == 0) {
+      <tr>
+        <td [colSpan]="headerKeys.length +2" class="text-center"><strong>NO DATA FOUND</strong></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

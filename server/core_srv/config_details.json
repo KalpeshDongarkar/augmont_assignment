@@ -1,0 +1,29 @@
+{
+    "corePort": 3000,
+    "proxy_redirection": [
+        {
+            "serviceLob": "userauth",
+            "pathSet": "/api/userauth/v1/",
+            "pathRewrt": {},
+            "targetUrl": "http://localhost:3021",
+            "srv_port": 3021,
+            "changeOrigin": true,
+            "webSckt": false,
+            "logLevel": "debug",
+            "cookieDomainRewrite": "localhost",
+            "xforwardHedr": true
+        },
+        {
+            "serviceLob": "product",
+            "pathSet": "/api/product/v1/",
+            "pathRewrt": {},
+            "targetUrl": "http://localhost:3022",
+            "srv_port": 3022,
+            "changeOrigin": true,
+            "webSckt": false,
+            "logLevel": "debug",
+            "cookieDomainRewrite": "localhost",
+            "xforwardHedr": true
+        }
+    ]
+}

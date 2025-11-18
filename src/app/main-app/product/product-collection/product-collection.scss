@@ -1,0 +1,45 @@
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-box {
+  min-height: 10rem !important;
+  max-height: 10rem !important;
+  min-width: 10rem !important;
+  max-width: 10rem !important;
+  border: 3px dashed #ccc;
+  border-radius: 4px;
+}
+
+.image-box img {
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  min-height: 9.7rem !important;
+  max-height: 9.7rem !important;
+  min-width: 9.7rem !important;
+  max-width: 9.7rem !important;
+}
+
+.overlay {
+  min-height: 9.7rem !important;
+  max-height: 9.7rem !important;
+  min-width: 9.7rem !important;
+  max-width: 9.7rem !important;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-box:hover .overlay {
+  opacity: 1;
+}
+
+.overlay span {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
